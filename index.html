@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+        body {
+            margin: 0;
+            background: #333;
+        }
+        :root {
+            --color: rgb(255, 255, 255);
+            --shadow: rgba(0, 0, 0, 0.15);
+            --color2: gray;
+            --PlateSize: 350px;
+            --PlateStroke: 6px;
+            --FlySizeUp: 25px;
+            --FlySizeDown: -25px;
+        }
+        #main {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .plate {
+            transform-style: preserve-3d;
+            transform: rotateX(45deg) translateY(var(--FlySizeUp));
+            width: var(--PlateSize);
+            aspect-ratio: 1;
+            background: var(--color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 
+                var(--shadow) 0px var(--PlateStroke),
+                var(--color) 0px var(--PlateStroke),
+                #111 0px var(--PlateStroke) calc(var(--PlateStroke) * 3);
+            animation: fly 7.5s infinite;    
+        }
+        @keyframes fly {
+            50% { transform: rotateX(45deg) translateY(var(--FlySizeDown));}
+        }
+        .plate_inside {
+            width: 50%;
+            aspect-ratio: 1;
+            background: var(--shadow);
+            border-radius: 50%;
+            box-shadow: 
+                inset var(--shadow) 0px 6px;
+        }
+        .on_plate {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            /* background: rgba(255, 0, 0, 0.25); */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .carot {
+            width: 50px;
+            aspect-ratio: 1;
+            background: orange;
+            border-radius: 50%;
+            box-shadow: 
+                rgba(0, 0, 0, 0.25) 0px 8px,
+                orange 0px 8px,
+                rgba(0, 0, 0, 0.5) 0px 12px 12px;
+        }
+        .carot_box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: translateX(50px) translateY(-30px);
+        }
+        .chicken_box {
+            transform: translateX(-100px) translateY(50px);
+        }
+        .meet {
+            width: 80px;
+            height: 90px;
+            border-radius: 50%;
+            background: rgb(177, 77, 19);
+            position: relative;
+            display: flex;
+            align-items: center;
+            transform: scaleX(1.2);
+            z-index: 5;
+            box-shadow: 
+                inset rgb(122, 53, 13) 0px 4px 16px,
+                inset rgb(235, 106, 31) 0px -4px 16px,
+                rgba(0, 0, 0, 0.75) 0px 8px 16px;
+        }
+        .bone {
+            z-index: 4;
+            position: absolute;
+            right: -50px;
+            border-radius: 25px;
+            width: 60px;
+            height: 20px;
+            background: rgb(233, 208, 161);
+            box-shadow: rgba(0, 0, 0, 0.5) 8px 12px 16px 4px;
+            
+        }
+        .bone::after {
+            content: '';
+            width: 20px;
+            right: -10px;
+            top: -10px;
+            aspect-ratio: 1/2;
+            border-radius: 50%;
+            position: absolute;
+            background: rgb(233, 208, 161);
+        }
+        .bone::before {
+            content: '';
+            width: 20px;
+            right: -10px;
+            bottom: -10px;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            position: absolute;
+            background: rgb(233, 208, 161);
+        }
+    </style>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section id="main">
+        <div class="plate">
+            <div class="plate_inside"></div>
+            <div class="on_plate">
+                <div class="carot_box">
+                    <div class="carot" style="transform: translateY(-25px);"></div>
+                    <div class="carot"></div>
+                </div>
+                <div class="rotate" style="transform: rotateZ(10deg);">
+                    <div class="chicken_box">
+                        <div class="meet">
+                            <div class="bone"></div>
+                        </div>              
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
